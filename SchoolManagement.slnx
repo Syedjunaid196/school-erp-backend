@@ -1,1 +1,14 @@
-<Solution />
+<Solution>
+  <Folder Name="/Src/" />
+  <Folder Name="/Src/API/">
+    <Project Path="SchoolManagement.API/SchoolManagement.API.csproj" />
+  </Folder>
+  <Folder Name="/Src/Core/">
+    <Project Path="SchoolManagement.Application/SchoolManagement.Application.csproj" />
+    <Project Path="SchoolManagement.Domain/SchoolManagement.Domain.csproj" />
+  </Folder>
+  <Folder Name="/Src/External/">
+    <Project Path="SchoolManagement.Infrastructure/SchoolManagement.Infrastructure.csproj" />
+    <Project Path="SchoolManagement.Persistence/SchoolManagement.Persistence.csproj" />
+  </Folder>
+</Solution>

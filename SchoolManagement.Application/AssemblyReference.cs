@@ -1,10 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Microsoft.Extensions.DependencyInjection;
 
 namespace SchoolManagement.Application
 {
-    internal class AssemblyReference
+    public static class AssemblyReference
     {
+        public static IServiceCollection AddApplicationServices(this IServiceCollection services)
+        {
+            return services;
+        }
     }
 }

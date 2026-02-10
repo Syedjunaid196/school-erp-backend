@@ -36,11 +36,11 @@ namespace SchoolManagement.API.Middlewares.ResultResponseMiddleware
                     PropertyNameCaseInsensitive = true,
                     PropertyNamingPolicy = JsonNamingPolicy.CamelCase
                 });
-                if(data.StatusCode != null)
+                if(data?.Value is not null)
                 {
                     httpContext.Response.StatusCode = data.StatusCode;
                 }
-                else if(data.ProblemDetails.Status is not null)
+                else if(data?.ProblemDetails?.Status is not null)
                 {
                     httpContext.Response.StatusCode = data.ProblemDetails.Status.Value;
                 }
@@ -73,11 +73,11 @@ namespace SchoolManagement.API.Middlewares.ResultResponseMiddleware
     {
         public object? Value { get; set; }
 
-        public string Message { get; set; }
+        public string? Message { get; set; }
 
         public int StatusCode { get; set; }
 
-        public ProblemDetails ProblemDetails { get; set; }
+        public ProblemDetails? ProblemDetails { get; set; }
 
         public bool IsSuccess => ProblemDetails is null;
     }

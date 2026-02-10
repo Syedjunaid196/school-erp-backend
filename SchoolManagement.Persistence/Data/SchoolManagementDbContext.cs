@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using SchoolManagement.Domain.Entities;
 
 namespace SchoolManagement.Persistence.Data
 {
@@ -13,5 +14,7 @@ namespace SchoolManagement.Persistence.Data
         {
             base.OnModelCreating(modelBuilder);
         }
+
+        public DbSet<User> Users { get; set; }
     }
 }

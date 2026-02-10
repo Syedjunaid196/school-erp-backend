@@ -5,7 +5,7 @@ using System.Text;
 
 namespace SchoolManagement.Application.Abstractions.Persistence
 {
-    public interface IBaseRepository<T> where T : BaseEntity, new() 
+    public interface IBaseRepository<T> where T : BaseEntity
     {
         Task AddAsync(T Model);
 

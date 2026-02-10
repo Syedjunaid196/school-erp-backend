@@ -1,4 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using SchoolManagement.Application.Abstractions.Services;
+using SchoolManagement.Application.Services;
 
 namespace SchoolManagement.Application
 {
@@ -6,6 +8,7 @@ namespace SchoolManagement.Application
     {
         public static IServiceCollection AddApplicationServices(this IServiceCollection services)
         {
+            services.AddScoped<IUserService, UserService>();
             return services;
         }
     }

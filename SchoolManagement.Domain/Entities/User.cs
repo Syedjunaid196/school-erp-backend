@@ -1,13 +1,12 @@
 ﻿using SchoolManagement.Domain.common;
 using SchoolManagement.Domain.Enums;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace SchoolManagement.Domain.Entities
 {
     public class User : BaseEntity
     {
+        private User() { }
+
         public string FirstName { get; private set; } = null!;
         public string LastName { get; private set; } = null!;
         public string Email { get; private set; } = null!;
@@ -28,6 +27,13 @@ namespace SchoolManagement.Domain.Entities
             HasPassword = hashpassword;
             Gender = gender;
             Role = role;
+            Status = UserStatus.Active;
+        }
+
+        public void Deactivate()
+        {
+            Status = UserStatus.Inactive;
+            MarkUpdated();
         }
 
 

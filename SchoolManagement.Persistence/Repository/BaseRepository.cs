@@ -4,7 +4,7 @@ using SchoolManagement.Persistence.Data;
 
 namespace SchoolManagement.Persistence.Repository
 {
-    public class BaseRepository<T>(SchoolManagementDbContext context) : IBaseRepository<T> where T : BaseEntity, new()
+    public class BaseRepository<T>(SchoolManagementDbContext context) : IBaseRepository<T> where T : BaseEntity
     {
         public async Task AddAsync(T Model)
         {

@@ -1,7 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using SchoolManagement.Application.Abstractions.IunitOfWork;
+using SchoolManagement.Application.Abstractions.Persistence;
 using SchoolManagement.Persistence.Data;
+using SchoolManagement.Persistence.Repository;
 
 namespace SchoolManagement.Persistence
 {
@@ -13,6 +16,8 @@ namespace SchoolManagement.Persistence
             {
                 options.UseSqlServer(configuration.GetConnectionString(nameof(SchoolManagementDbContext)));
             });
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<IUserRepository, UserRepository>();
             return services;
         }
     }

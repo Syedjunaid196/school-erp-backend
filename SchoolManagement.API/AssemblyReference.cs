@@ -6,10 +6,10 @@ namespace SchoolManagement.API
 {
     public static class AssemblyReference
     {
-        public static IServiceCollection AddApiServices(this IServiceCollection services)
+        public static IServiceCollection AddApiServices(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddApplicationServices()
-                    .AddPersistenceServices()
+                    .AddPersistenceServices(configuration)
                     .AddInfrastructureServices();
             return services;
         }

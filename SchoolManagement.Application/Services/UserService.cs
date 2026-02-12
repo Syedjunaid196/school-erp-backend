@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using SchoolManagement.Application.Abstractions.IunitOfWork;
 using SchoolManagement.Application.Abstractions.Persistence;
+using SchoolManagement.Application.Abstractions.Security;
 using SchoolManagement.Application.Abstractions.Services;
 using SchoolManagement.Application.RR_Models.User;
 using SchoolManagement.Application.Utils;
@@ -8,17 +9,26 @@ using SchoolManagement.Domain.Entities;
 
 namespace SchoolManagement.Application.Services
 {
-    public class UserService(IUnitOfWork unitOfWork, IUserRepository userRepository) : IUserService
+    public class UserService(IUnitOfWork unitOfWork, IUserRepository userRepository, IPasswordHasher bcryptPasswordPassword) : IUserService
     {
         public async Task<Result<UserResponse>> AddUser(UserRequest model)
         {
+
+
+            var isEmailExist = await userRepository.IsExists(x => x.Email == model.Email);
+            if (isEmailExist)
+            {
+                return Result<UserResponse>.Failure("Email already exists", StatusCodes.Status400BadRequest);
+            }
+            //var salt = bcryptPasswordPassword.GenetateSalt();
+            var hashPassword = bcryptPasswordPassword.HashPassword(model.Password); 
             var transaction = unitOfWork.BeginTrancaction();
 
             var user = new User(
                 model.FirstName,
                 model.LastName,
                 model.Email,
-                model.Password,
+                hashPassword,
                 model.Gender,
                 model.Role
                 );

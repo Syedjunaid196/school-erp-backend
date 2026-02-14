@@ -4,12 +4,14 @@ using SchoolManagement.Application.Abstractions.Persistence;
 using SchoolManagement.Application.Abstractions.Security;
 using SchoolManagement.Application.Abstractions.Services;
 using SchoolManagement.Application.RR_Models.User;
+using SchoolManagement.Application.RR_Models.User.UserLogin;
 using SchoolManagement.Application.Utils;
 using SchoolManagement.Domain.Entities;
 
 namespace SchoolManagement.Application.Services
 {
-    public class UserService(IUnitOfWork unitOfWork, IUserRepository userRepository, IPasswordHasher bcryptPasswordPassword) : IUserService
+    public class UserService(IUnitOfWork unitOfWork, IUserRepository userRepository, IPasswordHasher bcryptPasswordHasher,
+        IJwtTokenGenerator jwtTokenGenerator) : IUserService
     {
         public async Task<Result<UserResponse>> AddUser(UserRequest model)
         {
@@ -21,7 +23,7 @@ namespace SchoolManagement.Application.Services
                 return Result<UserResponse>.Failure("Email already exists", StatusCodes.Status400BadRequest);
             }
             //var salt = bcryptPasswordPassword.GenetateSalt();
-            var hashPassword = bcryptPasswordPassword.HashPassword(model.Password); 
+            var hashPassword = bcryptPasswordHasher.HashPassword(model.Password);
             var transaction = unitOfWork.BeginTrancaction();
 
             var user = new User(
@@ -54,6 +56,38 @@ namespace SchoolManagement.Application.Services
 
             return Result<UserResponse>.Failure("something went wrong", StatusCodes.Status400BadRequest);
 
+        }
+
+        public async Task<Result<LoginResponse>> UserLogin(LoginRequest model)
+        {
+            var user = await userRepository.FirstOrDefaultAsync(x => x.Email == model.Email);
+            if (user is null)
+            {
+                return Result<LoginResponse>.Failure("Invalid Email Or Password", StatusCodes.Status400BadRequest);
+            }
+
+            var isPasswordValid = bcryptPasswordHasher.VerifyPassword(model.Password, user.HasPassword);
+            if (!isPasswordValid)
+            {
+                return Result<LoginResponse>.Failure("Invalid Email Or Password", StatusCodes.Status400BadRequest);
+            }
+
+            if (user.Status != Domain.Enums.UserStatus.Active)
+            {
+                return Result<LoginResponse>.Failure("User account is not approved yet", StatusCodes.Status403Forbidden);
+            }
+
+            var token = jwtTokenGenerator.GenerateToken(user);
+
+            var response = new LoginResponse
+            {
+                Id = user.Id,
+                Email = user.Email,
+                Status = user.Status,
+                Token = token
+            };
+
+            return Result<LoginResponse>.Success(response, "Login Successful sir");
         }
     }
 }

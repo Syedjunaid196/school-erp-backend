@@ -1,6 +1,10 @@
-﻿using SchoolManagement.Application;
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using SchoolManagement.Application;
 using SchoolManagement.Infrastructure;
+using SchoolManagement.Infrastructure.Security;
 using SchoolManagement.Persistence;
+using System.Text;
 
 namespace SchoolManagement.API
 {
@@ -11,6 +15,38 @@ namespace SchoolManagement.API
             services.AddApplicationServices()
                     .AddPersistenceServices(configuration)
                     .AddInfrastructureServices();
+
+            //cors policy 
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowFrontend",
+                    policy =>
+                    {
+                        policy.WithOrigins("http://localhost:3000") //my frontend url for development 
+                              .AllowAnyHeader()
+                              .AllowAnyMethod();
+                    });
+            });
+
+            //jwt authentication
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(options =>
+                {
+                    var jwt = configuration.GetSection("Jwt").Get<JwtOptions>();
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuer = true,
+                        ValidateAudience = true,
+                        ValidateLifetime = true,
+                        ValidateIssuerSigningKey = true,
+                        ValidIssuer = jwt!.Issuer,
+                        ValidAudience = jwt!.Audience,
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwt.Key))
+                    };
+                });
+
+
+
             return services;
         }
     }

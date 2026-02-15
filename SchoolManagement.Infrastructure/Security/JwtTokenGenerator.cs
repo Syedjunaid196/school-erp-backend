@@ -10,16 +10,13 @@ using System.Text;
 
 namespace SchoolManagement.Infrastructure.Security
 {
-    public class JwtTokenGenerator : IJwtTokenGenerator
+    public class JwtTokenGenerator(IOptions<JwtOptions> options) : IJwtTokenGenerator
     {
-        public readonly JwtOptions _options;
-        public JwtTokenGenerator(IOptions<JwtOptions> options)
-        {
-            this._options = options.Value;
-        }
+        private readonly JwtOptions _options = options.Value;
+
         public string GenerateToken(User user)
         {
-            var calims = new[]
+            var claims = new[]
             {
                 new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString()),
                 new Claim(JwtRegisteredClaimNames.Email, user.Email),
@@ -32,8 +29,8 @@ namespace SchoolManagement.Infrastructure.Security
             var token = new JwtSecurityToken(
                 issuer: _options.Issuer,
                 audience: _options.Audience,
-                claims: calims,
-                expires: DateTime.Now.AddMinutes(_options.ExpiryMinutes),
+                claims: claims,
+                expires: DateTime.UtcNow.AddMinutes(_options.ExpiryMinutes),
                 signingCredentials: creds);
 
             var tokenHandler = new JwtSecurityTokenHandler();

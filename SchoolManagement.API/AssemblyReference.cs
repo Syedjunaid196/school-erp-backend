@@ -29,6 +29,8 @@ namespace SchoolManagement.API
             });
 
             //jwt authentication
+
+            services.Configure<JwtOptions>(configuration.GetSection("Jwt"));
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
                 {

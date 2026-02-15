@@ -87,7 +87,7 @@ namespace SchoolManagement.Application.Services
                 Token = token
             };
 
-            return Result<LoginResponse>.Success(response, "Login Successful sir");
+            return Result<LoginResponse>.Success(response, "Login Successful");
         }
     }
 }

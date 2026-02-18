@@ -43,18 +43,11 @@ namespace SchoolManagement.Application.Services
                 transaction.Commit();
                 return Result<UserResponse>.Success(new UserResponse
                 {
-                    Id = user.Id,
-                    FirstName = model.FirstName,
-                    LastName = model.LastName,
-                    Email = model.Email,
-                    Password = model.Password,
-                    Gender = model.Gender,
-                    Role = model.Role
-
-                }, "User Added Successfully");
+                    Id = user.Id,                    
+                }, StatusCodes.Status201Created, "User Added Successfully");
             }
 
-            return Result<UserResponse>.Failure("something went wrong", StatusCodes.Status400BadRequest);
+            return Result<UserResponse>.Failure("something went wrong", StatusCodes.Status500InternalServerError);
 
         }
 

@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace SchoolManagement.Application.RR_Models.User
+namespace SchoolManagement.Application.RR_Models.Teacher
 {
-    public class UserResponse
+    public class TeacherResponse
     {
         public Guid Id { get; set; }
     }

@@ -5,13 +5,15 @@ namespace SchoolManagement.Domain.Entities
 {
     public class User : BaseEntity
     {
-        private User() { }
+        private User() { } //for ef core
 
         public string FirstName { get; private set; } = null!;
         public string LastName { get; private set; } = null!;
         public string Email { get; private set; } = null!;
 
         public string HasPassword { get; private set; } = null!;
+
+
 
         public Gender Gender { get; private set; }
 

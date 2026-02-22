@@ -15,8 +15,6 @@ namespace SchoolManagement.Application.Services
     {
         public async Task<Result<UserResponse>> AddUser(UserRequest model)
         {
-
-
             var isEmailExist = await userRepository.IsExists(x => x.Email == model.Email);
             if (isEmailExist)
             {
@@ -77,6 +75,7 @@ namespace SchoolManagement.Application.Services
                 Id = user.Id,
                 Email = user.Email,
                 Status = user.Status,
+                Role = user.Role,
                 Token = token
             };
 

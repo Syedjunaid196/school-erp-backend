@@ -21,7 +21,27 @@ namespace SchoolManagement.API.Controllers
         public async Task<Result<LoginResponse>> UserLogin(LoginRequest model)
         {
             var result = await userService.UserLogin(model);
+            if(!result.IsSuccess)
+            {
+                return result;
+            }
+            var token = result.Value?.Token;
+            Response.Cookies.Append("accessToken", token, new CookieOptions
+            {
+                HttpOnly = true,
+                Secure = false, // Set to true in production
+                SameSite = SameSiteMode.Strict,
+                Expires = DateTimeOffset.UtcNow.AddMinutes(10)
+            });
+            result.Value?.Token = null;
             return result;
+        }
+
+        [HttpPost("logout")]
+        public IActionResult Logout()
+        {
+            Response.Cookies.Delete("accessToken");
+            return Ok();
         }
     }
 }

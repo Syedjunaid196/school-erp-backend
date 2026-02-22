@@ -1,3 +1,4 @@
+using FluentValidation;
 using SchoolManagement.API;
 using SchoolManagement.API.Middlewares.PublicMiddleware;
 

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using SchoolManagement.Application.Abstractions.Services;
 using SchoolManagement.Application.RR_Models.Student;
 using SchoolManagement.Application.Utils;
@@ -7,9 +8,11 @@ namespace SchoolManagement.API.Controllers
 {
     [ApiController]
     [Route("api/students")]
+    //[Authorize]
     public class StudentController(IStudentService studentService): ControllerBase
     {
         [HttpPost]
+        //[Authorize(Roles = "Admin")]
         public async Task<Result<StudentResponse>> CreateStudent(StudentRequest model)
         {
             var result = await studentService.CreateStudent(model);

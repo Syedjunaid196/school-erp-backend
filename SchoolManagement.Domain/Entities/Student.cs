@@ -1,33 +1,28 @@
 ﻿using SchoolManagement.Domain.common;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Text;
 
 namespace SchoolManagement.Domain.Entities
 {
-    public class Student: BaseEntity
+    public class Student : BaseEntity
     {
-
+        private Student() { }
 
         public Guid UserId { get; private set; }
-
-        [ForeignKey("UserId")]
-        public User User { get; private set; } =null!;
+        public User User { get; private set; } = null!;
 
         public string RollNumber { get; private set; } = null!;
-
         public DateTime DateOfBirth { get; private set; }
 
-        public Student(Guid userid, string rollNumber, DateTime dateOfBirth)
+        //parent-relationship
+
+        public Guid? ParentId { get; private set;  }
+        public Parent? Parent { get; private set; }
+
+        public Student(Guid userId, string rollNumber, DateTime dateOfBirth, Guid? parentId = null)
         {
-            UserId = userid;
+            UserId = userId;
             RollNumber = rollNumber;
             DateOfBirth = dateOfBirth;
+            ParentId = parentId;
         }
-
-
-
-
     }
 }

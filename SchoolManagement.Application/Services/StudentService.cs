@@ -22,7 +22,7 @@ namespace SchoolManagement.Application.Services
                 return Result<StudentResponse>.Failure("Email Already Exists", StatusCodes.Status400BadRequest);
             }
 
-            if(await studentRepository.IsExists(x => x.RollNumber == model.RollNumber))
+            if (await studentRepository.IsExists(x => x.RollNumber == model.RollNumber))
             {
                 return Result<StudentResponse>.Failure("Roll Number Already Exists", StatusCodes.Status400BadRequest);
             }
@@ -45,7 +45,8 @@ namespace SchoolManagement.Application.Services
             var student = new Student(
                 user.Id,
                 model.RollNumber,
-                model.DateOfBirth
+                model.DateOfBirth,
+                model.ParenetId
                 );
 
             await userRepository.AddAsync(user);
@@ -62,8 +63,6 @@ namespace SchoolManagement.Application.Services
                 }, StatusCodes.Status201Created, "Student created successfully");
             }
             return Result<StudentResponse>.Failure("Something went wrong", StatusCodes.Status500InternalServerError);
-
-
         }
     }
 }

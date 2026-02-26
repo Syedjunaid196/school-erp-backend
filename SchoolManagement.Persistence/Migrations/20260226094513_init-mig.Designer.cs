@@ -12,8 +12,8 @@ using SchoolManagement.Persistence.Data;
 namespace SchoolManagement.Persistence.Migrations
 {
     [DbContext(typeof(SchoolManagementDbContext))]
-    [Migration("20260222200808_final-migration")]
-    partial class finalmigration
+    [Migration("20260226094513_init-mig")]
+    partial class initmig
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -332,7 +332,7 @@ namespace SchoolManagement.Persistence.Migrations
                     b.Property<int>("Gender")
                         .HasColumnType("int");
 
-                    b.Property<string>("HasPassword")
+                    b.Property<string>("HashPassword")
                         .IsRequired()
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)");

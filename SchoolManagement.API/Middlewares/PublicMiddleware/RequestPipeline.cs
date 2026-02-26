@@ -1,17 +1,16 @@
-﻿using System.Runtime.CompilerServices;
+﻿using SchoolManagement.Persistence.Extensions;
+using System.Runtime.CompilerServices;
 
 namespace SchoolManagement.API.Middlewares.PublicMiddleware
 {
     public static class RequestPipeline
     {
-        public static WebApplication UsePublicMiddleware(this WebApplication app)
+        public static async Task<WebApplication> UsePublicMiddleware(this WebApplication app)
         {
             if (app.Environment.IsDevelopment())
             {
                 app.MapOpenApi();
             }
-
-
 
             app.UseHttpsRedirection();
             app.UseRouting();
@@ -22,7 +21,9 @@ namespace SchoolManagement.API.Middlewares.PublicMiddleware
 
             app.MapControllers();
 
-            app.Run();
+            await app.Services.SeedDataBaseAsync();
+
+ 
             return app;
         }
     }

@@ -57,7 +57,7 @@ namespace SchoolManagement.Application.Services
                 return Result<LoginResponse>.Failure("Invalid Email Or Password", StatusCodes.Status400BadRequest);
             }
 
-            var isPasswordValid = bcryptPasswordHasher.VerifyPassword(model.Password, user.HasPassword);
+            var isPasswordValid = bcryptPasswordHasher.VerifyPassword(model.Password, user.HashPassword);
             if (!isPasswordValid)
             {
                 return Result<LoginResponse>.Failure("Invalid Email Or Password", StatusCodes.Status400BadRequest);

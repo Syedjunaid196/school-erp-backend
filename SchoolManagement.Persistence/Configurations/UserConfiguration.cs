@@ -27,7 +27,7 @@ namespace SchoolManagement.Persistence.Configurations
             builder.HasIndex(u => u.Email)
                 .IsUnique();
 
-            builder.Property(u => u.HasPassword)
+            builder.Property(u => u.HashPassword)
                 .IsRequired()
                 .HasMaxLength(500);
 

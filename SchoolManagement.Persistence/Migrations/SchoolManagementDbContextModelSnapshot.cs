@@ -329,7 +329,7 @@ namespace SchoolManagement.Persistence.Migrations
                     b.Property<int>("Gender")
                         .HasColumnType("int");
 
-                    b.Property<string>("HasPassword")
+                    b.Property<string>("HashPassword")
                         .IsRequired()
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)");

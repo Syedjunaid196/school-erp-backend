@@ -11,7 +11,7 @@ namespace SchoolManagement.Domain.Entities
         public string LastName { get; private set; } = null!;
         public string Email { get; private set; } = null!;
 
-        public string HasPassword { get; private set; } = null!;
+        public string HashPassword { get; private set; } = null!;
 
 
 
@@ -26,7 +26,7 @@ namespace SchoolManagement.Domain.Entities
             FirstName = firstName;
             LastName = lastName;
             Email = email;
-            HasPassword = hashpassword;
+            HashPassword = hashpassword;
             Gender = gender;
             Role = role;
             Status = UserStatus.Active;

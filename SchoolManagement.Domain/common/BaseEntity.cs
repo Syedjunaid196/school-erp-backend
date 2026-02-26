@@ -4,7 +4,7 @@
     {
         public Guid Id { get; protected set; } = Guid.CreateVersion7();
 
-        public DateTime CreatedAt {  get; private set; }
+        public DateTime CreatedAt { get; private set; }
 
         public DateTime? UpdatedAt { get; private set; }
 

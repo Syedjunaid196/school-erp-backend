@@ -20,6 +20,7 @@ namespace SchoolManagement.Persistence
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<ITeacherRepository, TeacherRepository>();
             services.AddScoped<IStudentRepository, StudentRepository>();
+            
             return services;
         }
     }

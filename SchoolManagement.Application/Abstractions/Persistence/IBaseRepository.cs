@@ -16,6 +16,8 @@ namespace SchoolManagement.Application.Abstractions.Persistence
 
         Task<IEnumerable<T>> GetAllAsync();
 
+        Task<T?> GetByIdAsync(Guid id);
+
         Task<T> FirstOrDefaultAsync(Expression<Func<T, bool>> expression);
 
         Task<bool> IsExists(Expression<Func<T, bool>> expression);

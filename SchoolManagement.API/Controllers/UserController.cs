@@ -31,7 +31,7 @@ namespace SchoolManagement.API.Controllers
                 HttpOnly = true,
                 Secure = false, // Set to true in production
                 SameSite = SameSiteMode.Strict,
-                Expires = DateTimeOffset.UtcNow.AddMinutes(10)
+                Expires = DateTimeOffset.UtcNow.AddMinutes(60)
             });
             result.Value?.Token = null;
             return result;

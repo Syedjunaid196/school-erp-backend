@@ -23,9 +23,14 @@ namespace SchoolManagement.Persistence.Repository
             return await context.Set<T>().FirstOrDefaultAsync(expression);
         }
 
-        public Task<IEnumerable<T>> GetAllAsync()
+        public async Task<IEnumerable<T>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            return await context.Set<T>().AsNoTracking().ToListAsync();
+        }
+
+        public async Task<T?> GetByIdAsync(Guid id)
+        {
+            return await context.Set<T>().AsNoTracking().FirstAsync(e => e.Id == id);
         }
 
         public async Task<bool> IsExists(Expression<Func<T, bool>> expression)

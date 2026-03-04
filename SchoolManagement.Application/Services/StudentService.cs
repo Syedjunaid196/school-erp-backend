@@ -39,8 +39,6 @@ namespace SchoolManagement.Application.Services
                 UserRole.Student
                 );
 
-            user.Deactivate();
-
 
             var student = new Student(
                 user.Id,
@@ -63,6 +61,13 @@ namespace SchoolManagement.Application.Services
                 }, StatusCodes.Status201Created, "Student created successfully");
             }
             return Result<StudentResponse>.Failure("Something went wrong", StatusCodes.Status500InternalServerError);
+        }
+
+        public async Task<Result<List<StudentListResponse>>> GetAllStudents()
+        {
+            var students = await studentRepository.GetStudentListAsync();
+
+            return Result<List<StudentListResponse>>.Success(students);
         }
     }
 }

@@ -38,10 +38,10 @@ namespace SchoolManagement.API.Controllers
         }
 
         [HttpPost("logout")]
-        public IActionResult Logout()
+        public  Result<String> Logout()
         {
             Response.Cookies.Delete("accessToken");
-            return Ok();
+            return Result<string>.Success("Logged out successfully", StatusCodes.Status200OK);
         }
     }
 }

@@ -73,8 +73,6 @@ namespace SchoolManagement.Application.Services
             var response = new LoginResponse
             {
                 Id = user.Id,
-                Email = user.Email,
-                Status = user.Status,
                 Role = user.Role,
                 Token = token
             };

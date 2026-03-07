@@ -65,7 +65,7 @@ namespace SchoolManagement.Application.Services
 
             if (response.Count > 0)
             {
-                return Result<List<TeacherListResponse>>.Success(response, StatusCodes.Status200OK);
+                return Result<List<TeacherListResponse>>.Success(response, StatusCodes.Status200OK, "Teachers Fetched Successfully");
             }
 
             return Result<List<TeacherListResponse>>.Failure("No teachers found", StatusCodes.Status404NotFound);

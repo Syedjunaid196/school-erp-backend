@@ -7,8 +7,8 @@ using SchoolManagement.Application.Utils;
 namespace SchoolManagement.API.Controllers
 {
     [ApiController]
-    [Route("api/users")]
-    public class UserController(IUserService userService) : ControllerBase
+    [Route("api/auth")]
+    public class AuthController(IAuthService userService) : ControllerBase
     {
         [HttpPost]
         public async Task<Result<UserResponse>> CreateUser(UserRequest model)

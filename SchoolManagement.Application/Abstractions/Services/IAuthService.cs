@@ -4,7 +4,7 @@ using SchoolManagement.Application.Utils;
 
 namespace SchoolManagement.Application.Abstractions.Services
 {
-    public interface IUserService
+    public interface IAuthService
     {
         Task<Result<UserResponse>> AddUser(UserRequest model);
 

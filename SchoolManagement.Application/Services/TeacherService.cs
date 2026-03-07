@@ -10,7 +10,7 @@ using SchoolManagement.Domain.Enums;
 
 namespace SchoolManagement.Application.Services
 {
-    public class TeacherService(ITeacherRepository teacherRepository, IUnitOfWork unitOfWork, IUserRepository userRepository, IPasswordHasher passwordHasher) : ITeacherService
+    public class TeacherService(ITeacherRepository teacherRepository, IUnitOfWork unitOfWork, IAuthRepository userRepository, IPasswordHasher passwordHasher) : ITeacherService
          
     {
         public async Task<Result<TeacherResponse>> CreateTeacher(TeacherRequest model)

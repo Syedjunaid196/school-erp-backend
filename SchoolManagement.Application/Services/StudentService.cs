@@ -10,7 +10,7 @@ using SchoolManagement.Domain.Enums;
 
 namespace SchoolManagement.Application.Services
 {
-    public class StudentService(IUserRepository userRepository,
+    public class StudentService(IAuthRepository userRepository,
         IUnitOfWork unitOfWork,
         IPasswordHasher passwordHasher,
         IStudentRepository studentRepository) : IStudentService

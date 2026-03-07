@@ -2,7 +2,7 @@
 
 namespace SchoolManagement.Application.Abstractions.Persistence
 {
-    public interface IUserRepository: IBaseRepository<User>
+    public interface IAuthRepository: IBaseRepository<User>
     {
     }
 }

@@ -4,7 +4,7 @@ using SchoolManagement.Persistence.Data;
 
 namespace SchoolManagement.Persistence.Repository
 {
-    public class UserRepository(SchoolManagementDbContext context): BaseRepository<User>(context), IUserRepository
+    public class AuthRepository(SchoolManagementDbContext context): BaseRepository<User>(context), IAuthRepository
     {
     }
 }

@@ -10,8 +10,8 @@ using SchoolManagement.Domain.Entities;
 
 namespace SchoolManagement.Application.Services
 {
-    public class UserService(IUnitOfWork unitOfWork, IUserRepository userRepository, IPasswordHasher bcryptPasswordHasher,
-        IJwtTokenGenerator jwtTokenGenerator) : IUserService
+    public class AuthService(IUnitOfWork unitOfWork, IAuthRepository userRepository, IPasswordHasher bcryptPasswordHasher,
+        IJwtTokenGenerator jwtTokenGenerator) : IAuthService
     {
         public async Task<Result<UserResponse>> AddUser(UserRequest model)
         {

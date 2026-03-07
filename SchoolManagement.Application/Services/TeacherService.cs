@@ -37,7 +37,6 @@ namespace SchoolManagement.Application.Services
                 UserRole.Teacher
                 );
 
-            user.Deactivate();
             await userRepository.AddAsync(user);
 
             var teacher = new Teacher(

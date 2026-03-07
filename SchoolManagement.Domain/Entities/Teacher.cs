@@ -1,5 +1,4 @@
 ﻿using SchoolManagement.Domain.common;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SchoolManagement.Domain.Entities
 {

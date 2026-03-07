@@ -58,5 +58,17 @@ namespace SchoolManagement.Application.Services
 
 
         }
+
+        public async Task<Result<List<TeacherListResponse>>> GetTeachersList()
+        {
+            var response = await teacherRepository.GetTeacherList();
+
+            if (response.Count > 0)
+            {
+                return Result<List<TeacherListResponse>>.Success(response, StatusCodes.Status200OK);
+            }
+
+            return Result<List<TeacherListResponse>>.Failure("No teachers found", StatusCodes.Status404NotFound);
+        }
     }
 }

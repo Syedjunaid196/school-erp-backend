@@ -14,9 +14,6 @@ namespace SchoolManagement.Application.RR_Models.Student
 
         public string RollNumber { get; set; } = null!;
         public DateTime DateOfBirth { get; set; }
-
         public string? ParentName { get; set; }
-
-
     }
 }

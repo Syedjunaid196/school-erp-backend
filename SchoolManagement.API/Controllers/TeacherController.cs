@@ -15,5 +15,13 @@ namespace SchoolManagement.API.Controllers
             var result = await teacherService.CreateTeacher(model);
             return result;
         }
+
+
+        [HttpGet]
+        public async Task<Result<List<TeacherListResponse>>> GetTeacher()
+        {
+            var result = await teacherService.GetTeachersList();
+            return result;
+        }
     }
 }

@@ -59,7 +59,7 @@ namespace SchoolManagement.Application.Services
             var parents = await parentRepository.GetParentList();
             if (parents.Count >= 0)
             {
-                return Result<List<ParentListResponse>>.Success(parents, StatusCodes.Status200OK);
+                return Result<List<ParentListResponse>>.Success(parents, StatusCodes.Status200OK, "Parents Fetched successfully");
             }
             return Result<List<ParentListResponse>>.Failure("No parents found", StatusCodes.Status404NotFound);
         }

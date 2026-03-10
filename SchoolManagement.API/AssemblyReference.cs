@@ -19,8 +19,10 @@ namespace SchoolManagement.API
                     .AddPersistenceServices(configuration)
                     .AddInfrastructureServices();
 
-
+            //fluent validation
             services.AddValidatorsFromAssemblyContaining<StudentRequestValidator>();
+            services.AddValidatorsFromAssemblyContaining<TeacherRequestValidator>();
+            services.AddValidatorsFromAssemblyContaining<ParentRequestValidator>();
             services.AddFluentValidationAutoValidation(options =>
             {
                 options.DisableBuiltInModelValidation = true;                                                                 

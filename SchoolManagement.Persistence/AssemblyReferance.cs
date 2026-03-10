@@ -14,12 +14,13 @@ namespace SchoolManagement.Persistence
         {
             services.AddDbContext<SchoolManagementDbContext>(options =>
             {
-                options.UseSqlServer(configuration.GetConnectionString(nameof(SchoolManagementDbContext)));
+                options.UseSqlServer(configuration.GetConnectionString(nameof(SchoolManagementDbContext))); 
             });
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IAuthRepository, AuthRepository>();
             services.AddScoped<ITeacherRepository, TeacherRepository>();
             services.AddScoped<IStudentRepository, StudentRepository>();
+            services.AddScoped<IParentRepository, ParentRepository>();
             return services;
         }
     }

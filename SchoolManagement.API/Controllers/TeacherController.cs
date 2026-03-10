@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using SchoolManagement.Application.Abstractions.Services;
 using SchoolManagement.Application.RR_Models.Teacher;
 using SchoolManagement.Application.Utils;
@@ -10,6 +11,7 @@ namespace SchoolManagement.API.Controllers
     public class TeacherController(ITeacherService teacherService) : ControllerBase
     {
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public async Task<Result<TeacherResponse>> CreateTeacher(TeacherRequest model)
         {
             var result = await teacherService.CreateTeacher(model);
@@ -18,6 +20,7 @@ namespace SchoolManagement.API.Controllers
 
 
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public async Task<Result<List<TeacherListResponse>>> GetTeacher()
         {
             var result = await teacherService.GetTeachersList();

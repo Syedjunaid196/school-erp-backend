@@ -6,5 +6,6 @@ namespace SchoolManagement.Application.Abstractions.Services
     public interface IParentService
     {
         Task<Result<ParentResponse>> AddParent(ParentRequest model);
+        Task<Result<List<ParentListResponse>>> GetParentList();
     }
 }

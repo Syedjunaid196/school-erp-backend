@@ -19,5 +19,13 @@ namespace SchoolManagement.API.Controllers
             var result = await parentService.AddParent(model);
             return result;
         }
+
+        [HttpGet]
+        [Authorize(Roles = "Admin")]
+        public async Task<Result<List<ParentListResponse>>> GetParentList()
+        {
+            var result = await parentService.GetParentList();
+            return result;
+        }
     }
 }

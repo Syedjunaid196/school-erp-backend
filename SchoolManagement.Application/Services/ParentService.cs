@@ -53,5 +53,15 @@ namespace SchoolManagement.Application.Services
             return Result<ParentResponse>.Failure("Failed to create parent", StatusCodes.Status500InternalServerError);
 
         }
+
+        public async Task<Result<List<ParentListResponse>>> GetParentList()
+        {
+            var parents = await parentRepository.GetParentList();
+            if (parents.Count >= 0)
+            {
+                return Result<List<ParentListResponse>>.Success(parents, StatusCodes.Status200OK);
+            }
+            return Result<List<ParentListResponse>>.Failure("No parents found", StatusCodes.Status404NotFound);
+        }
     }
 }

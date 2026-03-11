@@ -1,11 +1,10 @@
-﻿using SchoolManagement.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using SchoolManagement.Application.RR_Models.AcademicYear;
+using SchoolManagement.Domain.Entities;
 
 namespace SchoolManagement.Application.Abstractions.Persistence
 {
     public interface IAcademicYearRepository: IBaseRepository<AcademicYear>
     {
+        Task<List<AcademicYearResponse>> GetAcademicYears();
     }
 }

@@ -15,7 +15,7 @@ namespace SchoolManagement.Application.Services
         {
 
             var exists = await academicYearRepository.IsExists(x => x.Name == model.Name);
-            if(exists)
+            if (exists)
             {
                 return Result<AcademicYearResponse>.Failure("An academic year with the same name already exists", StatusCodes.Status400BadRequest);
             }
@@ -41,9 +41,16 @@ namespace SchoolManagement.Application.Services
             return Result<AcademicYearResponse>.Failure("Failed to create academic year", StatusCodes.Status500InternalServerError);
         }
 
-        public Task<Result<List<AcademicYearResponse>>> GetAcademicYears()
+        public async Task<Result<List<AcademicYearResponse>>> GetAcademicYears()
         {
-            throw new NotImplementedException();
+            var result = await academicYearRepository.GetAcademicYears();
+            if (result.Count > 0)
+            {
+                return Result<List<AcademicYearResponse>>.Success(result, StatusCodes.Status200OK, "Academic years fetched successfully");
+            }
+            return Result<List<AcademicYearResponse>>.Failure("No academic years found", StatusCodes.Status404NotFound);
+
+
         }
     }
 }

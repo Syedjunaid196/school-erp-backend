@@ -23,9 +23,11 @@ namespace SchoolManagement.API
             services.AddValidatorsFromAssemblyContaining<StudentRequestValidator>();
             services.AddValidatorsFromAssemblyContaining<TeacherRequestValidator>();
             services.AddValidatorsFromAssemblyContaining<ParentRequestValidator>();
+            services.AddValidatorsFromAssemblyContaining<AcademicYearValidator>();
+            services.AddValidatorsFromAssemblyContaining<SchoolClassRequestValidator>();
             services.AddFluentValidationAutoValidation(options =>
             {
-                options.DisableBuiltInModelValidation = true;                                                                 
+                options.DisableBuiltInModelValidation = true;
             });
 
 

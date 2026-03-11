@@ -7,8 +7,6 @@ namespace SchoolManagement.Application.RR_Models.AcademicYear
     public class AcademicYearRequest
     {
         public string Name { get; set; } = null!;
-
-
         public DateTime StartDate {  get; set; }
         public DateTime EndDate { get; set; }
 

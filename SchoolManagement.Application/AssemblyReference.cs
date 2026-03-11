@@ -15,6 +15,7 @@ namespace SchoolManagement.Application
             services.AddScoped<IParentService, ParentService>();
             services.AddScoped<IAcademicYearService, AcademicYearService>();
             services.AddScoped<ISchoolClassService, SchoolClassService>();
+            services.AddScoped<ISectionService, SectionService>();
             return services;
         }
     }

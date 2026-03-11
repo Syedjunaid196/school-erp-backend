@@ -26,6 +26,7 @@ namespace SchoolManagement.Persistence
             services.AddScoped<ISectionRepository, SectionRepository>();
             services.AddScoped<IStudentEnrollmentRepository, StudentEnrollmentRepository>();
             services.AddScoped<ISubjectRepository, SubjectRepository>();
+            services.AddScoped<ITeacherSubjectAssignmentRepository, TeacherSubjectAssignmentRepository>();
             return services;
         }
     }

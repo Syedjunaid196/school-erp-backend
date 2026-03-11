@@ -18,6 +18,7 @@ namespace SchoolManagement.Application
             services.AddScoped<ISectionService, SectionService>();
             services.AddScoped<IStudentEnrollmentService, StudentEnrollmentService>();
             services.AddScoped<ISubjectService, SubjectService>();
+            services.AddScoped<ITeacherSubjectAssignmentService, TeacherSubjectAssignmentService>();
             return services;
         }
     }

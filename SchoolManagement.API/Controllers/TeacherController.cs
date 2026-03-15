@@ -7,6 +7,7 @@ using SchoolManagement.Application.Utils;
 namespace SchoolManagement.API.Controllers
 {
     [ApiController]
+    [Authorize]
     [Route("api/teachers")]
     public class TeacherController(ITeacherService teacherService) : ControllerBase
     {

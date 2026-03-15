@@ -11,12 +11,12 @@ namespace SchoolManagement.Application.Validators
         public SectionRequestValidator()
         {
             RuleFor(x => x.Name)
-                .NotEmpty().WithMessage("Section name is required.")
+                .NotEmpty().WithMessage("Section name is requireddd.")
                 .MaximumLength(20).WithMessage("Section name must not exceed 20 characters.");
 
-            RuleFor(x=> x.SchoolClassId)
+            RuleFor(x => x.SchoolClassId)
                 .NotEmpty().WithMessage("School class ID is required.")
-                .Must(id => id != Guid.Empty).WithMessage("School class ID must be a valid GUID.");
+                .Must(id => id != Guid.Empty).WithMessage("School class ID must be a valid GUIDddd.");
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using SchoolManagement.Application.Abstractions.Services;
 using SchoolManagement.Application.RR_Models.TeacherSubjectAssignment;
 using SchoolManagement.Application.Utils;
@@ -6,10 +7,12 @@ using SchoolManagement.Application.Utils;
 namespace SchoolManagement.API.Controllers
 {
     [ApiController]
+    [Authorize]
     [Route("api/teacher-subject-assignments")]
     public class TeacherSubjectAssignmentController(ITeacherSubjectAssignmentService teacherSubjectAssignmentService): ControllerBase
     {
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public async Task<Result<TeacherSubjectAssignmentResponse>> AssignTeacher(TeacherSubjectAssignmentRequest model)
         {
             var result = await teacherSubjectAssignmentService.AssignTeacher(model);
@@ -18,6 +21,7 @@ namespace SchoolManagement.API.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public Task<Result<List<TeacherSubjectAssignmentResponse>>> GetAllAssignments()
         {
             var result = teacherSubjectAssignmentService.GetAllAssignments();

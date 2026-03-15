@@ -43,6 +43,7 @@ namespace SchoolManagement.Application.Services
                 {
                     Id = assignments.Id
                 };
+                return Result<TeacherSubjectAssignmentResponse>.Success(response, StatusCodes.Status201Created, "Teacher assigned successfully");
             }
             return Result<TeacherSubjectAssignmentResponse>.Failure("Something went wrong", StatusCodes.Status500InternalServerError);
         }

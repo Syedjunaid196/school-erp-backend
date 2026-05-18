@@ -6,7 +6,7 @@ using SchoolManagement.Application.Services;
 using SchoolManagement.Application.Utils;
 
 namespace SchoolManagement.API.Controllers
-{
+{ 
     [ApiController]
     [Route("api/students")]
     [Authorize]
@@ -26,6 +26,14 @@ namespace SchoolManagement.API.Controllers
         {
             var result = await studentService.GetAllStudents();
 
+            return result;
+        }
+
+        [HttpDelete("{id}")]
+        [Authorize(Roles = "Admin")]
+        public async Task<Result<StudentResponse>> DeleteStudentByIdAsync(Guid id)
+        {
+            var result = await studentService.DeleteStudentByIdAsync(id);
             return result;
         }
     }

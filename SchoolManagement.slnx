@@ -1,14 +1,17 @@
 <Solution>
   <Folder Name="/Src/" />
   <Folder Name="/Src/API/">
-    <Project Path="SchoolManagement.API/SchoolManagement.API.csproj" />
+    <Project Path="D:/schoolProject/SchoolManagement/SchoolManagement.API/SchoolManagement.API.csproj" />
   </Folder>
   <Folder Name="/Src/Core/">
-    <Project Path="SchoolManagement.Application/SchoolManagement.Application.csproj" />
-    <Project Path="SchoolManagement.Domain/SchoolManagement.Domain.csproj" />
+    <Project Path="D:/schoolProject/SchoolManagement/SchoolManagement.Application/SchoolManagement.Application.csproj" />
+    <Project Path="D:/schoolProject/SchoolManagement/SchoolManagement.Domain/SchoolManagement.Domain.csproj" />
   </Folder>
   <Folder Name="/Src/External/">
-    <Project Path="SchoolManagement.Infrastructure/SchoolManagement.Infrastructure.csproj" />
-    <Project Path="SchoolManagement.Persistence/SchoolManagement.Persistence.csproj" />
+    <Project Path="D:/schoolProject/SchoolManagement/SchoolManagement.Infrastructure/SchoolManagement.Infrastructure.csproj" />
+    <Project Path="D:/schoolProject/SchoolManagement/SchoolManagement.Persistence/SchoolManagement.Persistence.csproj" />
+  </Folder>
+  <Folder Name="/Src/Tests/">
+    <Project Path="D:/schoolProject/SchoolManagement/SchoolManagement.Tests/SchoolManagement.Tests.csproj" Id="e331324e-430d-4291-b3ae-1e1a5a82658a" />
   </Folder>
 </Solution>

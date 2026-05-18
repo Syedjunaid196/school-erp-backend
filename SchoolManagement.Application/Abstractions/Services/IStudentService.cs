@@ -8,5 +8,9 @@ namespace SchoolManagement.Application.Abstractions.Services
         Task<Result<StudentResponse>> CreateStudent(StudentRequest model);
 
         Task<Result<List<StudentListResponse>>> GetAllStudents();
+
+        Task<Result<StudentResponse>> DeleteStudentByIdAsync(Guid id);
+
+
     }
 }

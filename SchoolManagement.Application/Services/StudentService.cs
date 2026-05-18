@@ -63,10 +63,27 @@ namespace SchoolManagement.Application.Services
             return Result<StudentResponse>.Failure("Something went wrong", StatusCodes.Status500InternalServerError);
         }
 
+        public async Task<Result<StudentResponse>> DeleteStudentByIdAsync(Guid id)
+        {
+            var student = studentRepository.GetByIdAsync(id);
+            if (student is not null)
+            {
+                await studentRepository.DeletebyIdAsync(id);
+                var returnValue = await unitOfWork.SaveChangesAsync();
+                if (returnValue > 0)
+                {
+                    return Result<StudentResponse>.Success(new StudentResponse
+                    {
+                        Id = id
+                    }, StatusCodes.Status200OK, "Student deleted successfully");
+                }
+            }
+            return Result<StudentResponse>.Failure("Student not found", StatusCodes.Status404NotFound);
+        }
+
         public async Task<Result<List<StudentListResponse>>> GetAllStudents()
         {
             var students = await studentRepository.GetStudentListAsync();
-
             return Result<List<StudentListResponse>>.Success(students);
         }
     }

@@ -14,6 +14,8 @@ namespace SchoolManagement.Application.Abstractions.Persistence
 
         Task DeleteAsync(T Model);
 
+        Task DeletebyIdAsync(Guid id);
+
         Task<IEnumerable<T>> GetAllAsync();
 
         Task<T?> GetByIdAsync(Guid id);

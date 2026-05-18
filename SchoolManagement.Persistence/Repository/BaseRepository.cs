@@ -13,9 +13,21 @@ namespace SchoolManagement.Persistence.Repository
             await context.AddAsync(Model);
         }
 
-        public Task DeleteAsync(T Model)
+        public async Task DeleteAsync(T Model)
         {
-            throw new NotImplementedException();
+            await Task.Run(() => context.Remove(Model));
+        }
+
+        public async Task DeletebyIdAsync(Guid id)
+        {
+            await Task.Run(() =>
+            {
+                var entity = context.Set<T>().FirstOrDefault(e => e.Id == id);
+                if (entity != null)
+                {
+                    context.Remove(entity);
+                }
+            });
         }
 
         public async Task<T> FirstOrDefaultAsync(Expression<Func<T, bool>> expression)

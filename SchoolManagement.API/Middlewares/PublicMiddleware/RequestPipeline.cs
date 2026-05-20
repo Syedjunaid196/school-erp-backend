@@ -11,14 +11,14 @@ namespace SchoolManagement.API.Middlewares.PublicMiddleware
             {
                 app.MapOpenApi();
             }
-
+            
             app.UseHttpsRedirection();
             app.UseRouting();
 
             app.UseCors("AllowFrontend");
 
             app.UseAuthorization();
-
+            app.UseHttpLogging();
             app.MapControllers();
 
             await app.Services.SeedDataBaseAsync();

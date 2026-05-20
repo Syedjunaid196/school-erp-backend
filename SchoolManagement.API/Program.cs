@@ -1,4 +1,5 @@
 using FluentValidation;
+using Microsoft.AspNetCore.HttpLogging;
 using SchoolManagement.API;
 using SchoolManagement.API.Middlewares.PublicMiddleware;
 
@@ -10,10 +11,20 @@ builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 builder.Services.AddApiServices(builder.Configuration);
+builder.Services.AddHttpLogging(options =>
+{
+    options.LoggingFields =
+        HttpLoggingFields.RequestMethod |
+        HttpLoggingFields.RequestPath |
+        HttpLoggingFields.ResponseStatusCode;
+
+    options.CombineLogs = true;
+});
 
 
 
 var app = builder.Build();
+
 
 // Configure the HTTP request pipeline.
 await app.UsePublicMiddleware();
